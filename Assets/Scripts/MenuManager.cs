@@ -13,14 +13,11 @@ public class MenuManager : MonoBehaviour
     private Animator _pauseMenuAnimation;
     private GameObject _pauseButton;
 
-    private void Start()
+    private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            Invoke("LoadGameScene", 1);
-            _buttons = GameObject.FindGameObjectsWithTag("Buttons");
-        }
-        else
+        _buttons = GameObject.FindGameObjectsWithTag("Buttons");
+
+        if(SceneManager.GetActiveScene().buildIndex != 0)
         {
             _pauseMenuAnimation = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Animator>();
             _pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
